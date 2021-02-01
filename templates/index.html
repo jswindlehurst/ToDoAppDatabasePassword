@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<a href="/logout">Log Out</a>
+<br>
+<h1> Task To Do List App: Index Page </h1>
+<br>
+
+{% if not user %}
+
+    <form action="/login" method="post">
+        <input type="text" name="user-name" placeholder="Enter your name"><br>
+        <input type="email" name="user-email" placeholder="Enter your email address"><br>
+        <input type="password" name="user-password" placeholder="Enter your password"><br>
+        <button>Submit</button>
+
+{% else %}
+
+        <a href="/task">Go to Tasks for {{ user.email }} </a>
+
+
+{% endif %}
+
+
+
+{% endblock content %}

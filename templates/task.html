@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<a href="/logout">Log Out</a>
+<br>
+<h1> Task Page </h1>
+<br>
+
+
+    <div class="form">
+        <form action="/task" method="post">
+            <input type="text" name="content" placeholder="Task">
+            <input type="submit" value="Add Task">
+        </form><br>
+
+    </div>
+
+
+{% if tasks %}
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Date</th>
+            <th>Completed?</th>
+            <th>Edit?</th>
+        </tr>
+
+       {% for task in tasks %}
+       <tr>
+           <td>{{ task.content }}</td>
+           <td>{{ task.date.date() }}</td>
+           <td>
+               <a href="/delete/{{ task.id }}">Done</a>
+           </td>
+           <td>
+               <a href="/edit/{{ task.id }}">Update</a>
+            </td>
+       </tr>
+       {% endfor %}
+    </table>
+
+{% endif %}
+
+
+{% endblock content %}
