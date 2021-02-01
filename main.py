@@ -27,7 +27,7 @@ def login():
     email = request.form.get("user-email")
     password = request.form.get("user-password")
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    content = "Welcome User"
+    content = "Welcome"
     date = datetime.datetime.now()
 
 
@@ -60,7 +60,7 @@ def task():
 
     if request.method == "POST":
         task_content = request.form.get("content")
-        new_content = ToDo(name=name, content=task_content)
+        new_content = ToDo(name=name, content=task_content, session_token=session)
 
         db.add(new_content)
         db.commit()
